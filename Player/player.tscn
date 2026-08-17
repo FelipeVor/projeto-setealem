@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c5b27s5hrnsri" path="res://FlashlightRadius.png" id="5_k53q1"]
 [ext_resource type="Texture2D" uid="uid://bfxy4lhh0t0op" path="res://Player/jose_walk-side-Sheet.png" id="5_lhvu3"]
 [ext_resource type="Texture2D" uid="uid://bt543v66lbe8t" path="res://light.jpg" id="6_fhl08"]
+[ext_resource type="Script" uid="uid://ch8pml4h00oje" path="res://Player/stress.gd" id="7_vtle1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2m8d"]
 height = 50.0
@@ -112,6 +113,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0sef1"]
+radius = 126.0
+height = 328.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1375523118]
 texture_filter = 1
 script = ExtResource("1_ij6vw")
@@ -144,3 +149,21 @@ offset = Vector2(100, 0)
 [node name="PointLight2D2" type="PointLight2D" parent="." unique_id=720972517]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("6_fhl08")
+
+[node name="Stress" type="Node" parent="." unique_id=1040353667]
+unique_name_in_owner = true
+script = ExtResource("7_vtle1")
+metadata/_custom_type_script = "uid://ch8pml4h00oje"
+
+[node name="Timer" type="Timer" parent="." unique_id=1285556362]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1174792245]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1959858526]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0sef1")
+
+[connection signal="timeout" from="Timer" to="." method="stress_overtime"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

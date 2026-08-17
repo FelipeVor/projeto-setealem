@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bp72y3xxsxsj" path="res://Player/player.tscn" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://dklxgam6fg1lc" path="res://icon.svg" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://bfhmhwjfskk5y" path="res://Enemy.gd" id="2_epypp"]
 
 [sub_resource type="Gradient" id="Gradient_0e48y"]
 offsets = PackedFloat32Array(0.57228917)
@@ -10,10 +11,19 @@ colors = PackedColorArray(0.33071998, 0.2756, 0.53, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fxtps"]
 gradient = SubResource("Gradient_0e48y")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sef1"]
+size = Vector2(120.47046, 115.45099)
+
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jswj6"]
 polygon = PackedVector2Array(0, 0, 0, 0, 10.039307, -10.039215, 10.039307, -110.431366, 0, -120.47058, -110.431274, -120.47058, -120.47046, -110.431366, -120.47046, -10.039215, -110.431274, 0)
 
 [node name="Node2D" type="Node2D" unique_id=1229876608]
+
+[node name="Stress_Label" type="Label" parent="." unique_id=1795571162]
+offset_left = 202.0
+offset_top = 122.0
+offset_right = 242.0
+offset_bottom = 145.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=370671560]
 position = Vector2(240.5, 134.5)
@@ -24,14 +34,21 @@ texture = SubResource("GradientTexture2D_fxtps")
 color = Color(0.66656864, 0.6665687, 0.6665685, 1)
 
 [node name="Player" parent="." unique_id=1375523118 instance=ExtResource("1_wtcfe")]
-position = Vector2(217, 130)
+position = Vector2(202, 122)
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=756171271]
+[node name="Enemy" type="CharacterBody2D" parent="." unique_id=1704915910]
 position = Vector2(364.00003, 83.00001)
 scale = Vector2(0.19921881, 0.19921881)
+script = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=679507909]
+position = Vector2(-0.00012207031, -2.5098267)
+shape = SubResource("RectangleShape2D_0sef1")
+
+[node name="Icon" type="Sprite2D" parent="Enemy" unique_id=756171271]
 texture = ExtResource("2_0e48y")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Icon" unique_id=2067633676]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Enemy/Icon" unique_id=2067633676]
 position = Vector2(55.215523, 60.235237)
 occluder = SubResource("OccluderPolygon2D_jswj6")
 
@@ -44,6 +61,24 @@ texture = ExtResource("2_0e48y")
 position = Vector2(55.215523, 60.235237)
 occluder = SubResource("OccluderPolygon2D_jswj6")
 
-[node name="Label" type="Label" parent="." unique_id=571580049]
+[node name="debug_label" type="Label" parent="." unique_id=571580049]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Enemy2" type="CharacterBody2D" parent="." unique_id=811073225]
+position = Vector2(364.00003, 83.00001)
+scale = Vector2(0.19921881, 0.19921881)
+script = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy2" unique_id=1423873040]
+position = Vector2(-0.00012207031, -2.5098267)
+shape = SubResource("RectangleShape2D_0sef1")
+
+[node name="Icon" type="Sprite2D" parent="Enemy2" unique_id=1235319875]
+texture = ExtResource("2_0e48y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Enemy2/Icon" unique_id=1806426025]
+position = Vector2(55.215523, 60.235237)
+occluder = SubResource("OccluderPolygon2D_jswj6")
+
+[connection signal="stress_damage" from="Enemy" to="Player" method="_on_enemy_stress_damage"]
