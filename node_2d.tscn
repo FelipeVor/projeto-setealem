@@ -1,8 +1,49 @@
 [gd_scene format=3 uid="uid://c0tqm7m0tn1tc"]
 
-[ext_resource type="PackedScene" uid="uid://bp72y3xxsxsj" path="res://character_body_2d.tscn" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://bp72y3xxsxsj" path="res://Player/player.tscn" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://dklxgam6fg1lc" path="res://icon.svg" id="2_0e48y"]
+
+[sub_resource type="Gradient" id="Gradient_0e48y"]
+offsets = PackedFloat32Array(0.57228917)
+colors = PackedColorArray(0.33071998, 0.2756, 0.53, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fxtps"]
+gradient = SubResource("Gradient_0e48y")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jswj6"]
+polygon = PackedVector2Array(0, 0, 0, 0, 10.039307, -10.039215, 10.039307, -110.431366, 0, -120.47058, -110.431274, -120.47058, -120.47046, -110.431366, -120.47046, -10.039215, -110.431274, 0)
 
 [node name="Node2D" type="Node2D" unique_id=1229876608]
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=370671560]
+position = Vector2(240.5, 134.5)
+scale = Vector2(17.872839, 9.995413)
+texture = SubResource("GradientTexture2D_fxtps")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1401113529]
+color = Color(0.66656864, 0.6665687, 0.6665685, 1)
+
 [node name="Player" parent="." unique_id=1375523118 instance=ExtResource("1_wtcfe")]
-position = Vector2(610, 328)
+position = Vector2(217, 130)
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=756171271]
+position = Vector2(364.00003, 83.00001)
+scale = Vector2(0.19921881, 0.19921881)
+texture = ExtResource("2_0e48y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Icon" unique_id=2067633676]
+position = Vector2(55.215523, 60.235237)
+occluder = SubResource("OccluderPolygon2D_jswj6")
+
+[node name="Icon2" type="Sprite2D" parent="." unique_id=965491398]
+position = Vector2(80.00001, 205)
+scale = Vector2(0.19921881, 0.19921881)
+texture = ExtResource("2_0e48y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Icon2" unique_id=1675904690]
+position = Vector2(55.215523, 60.235237)
+occluder = SubResource("OccluderPolygon2D_jswj6")
+
+[node name="Label" type="Label" parent="." unique_id=571580049]
+offset_right = 40.0
+offset_bottom = 23.0

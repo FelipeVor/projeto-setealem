@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://bp72y3xxsxsj"]
+
+[ext_resource type="Script" uid="uid://c5vnxtt4ho7oc" path="res://Player/player.gd" id="1_ij6vw"]
+[ext_resource type="Texture2D" uid="uid://du4nitbpgbai6" path="res://Player/jose_walk-Sheet.png" id="2_ij6vw"]
+[ext_resource type="Texture2D" uid="uid://c7id0g8u2s8v2" path="res://Player/jose_walk-back-Sheet.png" id="3_dd465"]
+[ext_resource type="Texture2D" uid="uid://c5b27s5hrnsri" path="res://FlashlightRadius.png" id="5_k53q1"]
+[ext_resource type="Texture2D" uid="uid://bfxy4lhh0t0op" path="res://Player/jose_walk-side-Sheet.png" id="5_lhvu3"]
+[ext_resource type="Texture2D" uid="uid://bt543v66lbe8t" path="res://light.jpg" id="6_fhl08"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2m8d"]
+height = 50.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp52p"]
+atlas = ExtResource("3_dd465")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sjlk"]
+atlas = ExtResource("3_dd465")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kp85"]
+atlas = ExtResource("3_dd465")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ct3r"]
+atlas = ExtResource("3_dd465")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44cfe"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghijl"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhvu3"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dd465"]
+atlas = ExtResource("2_ij6vw")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyqjk"]
+atlas = ExtResource("5_lhvu3")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnedo"]
+atlas = ExtResource("5_lhvu3")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebjds"]
+atlas = ExtResource("5_lhvu3")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k85er"]
+atlas = ExtResource("5_lhvu3")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fxtps"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp52p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sjlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kp85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ct3r")
+}],
+"loop": 1,
+"name": &"walk_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44cfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghijl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhvu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dd465")
+}],
+"loop": 1,
+"name": &"walk_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyqjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnedo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebjds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k85er")
+}],
+"loop": 1,
+"name": &"walk_side",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=1375523118]
+texture_filter = 1
+script = ExtResource("1_ij6vw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749370900]
+shape = SubResource("CapsuleShape2D_y2m8d")
+
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=1310721097]
+sprite_frames = SubResource("SpriteFrames_fxtps")
+animation = &"walk_back"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=681862998]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=204567008]
+position = Vector2(0, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = ExtResource("5_k53q1")
+offset = Vector2(100, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="PointLight2D" unique_id=349219609]
+energy = 0.5
+shadow_filter = 1
+shadow_filter_smooth = 1.0
+texture = ExtResource("5_k53q1")
+offset = Vector2(100, 0)
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=720972517]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_fhl08")
