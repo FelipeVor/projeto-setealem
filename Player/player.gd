@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 const SPEED = 100
-var bodies: int
+var bodies: int:
+	set(value):
+		bodies = clamp(value, 0, 100)
 var stress_regen: int
 var stress: float:
 	set(value):
@@ -10,15 +12,13 @@ var anim := "front"
 
 
 func _physics_process(_delta: float) -> void:
-	
+	$"../CanvasLayer/Label".text = str("stress: ", stress)
 	
 	mouse_follow()
 	
 	var direction := Input.get_vector("left", "right", "up", "down")
 	
 	var direction_light = Vector2($".".position - get_global_mouse_position()).normalized()
-	
-	$"../debug_label".text = str(direction_light)
 	
 	if direction_light.y < 0  and direction_light.x == clamp(direction_light.x, -0.9, 0.9):
 		$anim.flip_h = false
@@ -52,20 +52,33 @@ func set_stress(damage):
 func player():
 	pass
 
-
 func stress_overtime():
+	$"../CanvasLayer/bodies".text = str("bodies: ", bodies)
 	if bodies >= 1:
-		stress += float(3 * bodies/10)
+		stress += 3 * float(bodies)/10
 	else:
 		stress -= 1
 	print(stress)
+	
+#alucintaio
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
-		bodies += 1
-
+		if body.discovered == false:
+			bodies += 1
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
-		bodies -= 1
-		
+		if body.discovered == false:
+			bodies -= 1
+
+func _on_light_area_body_entered(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		$"../CanvasLayer/debugs".text = "to vendo bixo"
+		if body.discovered == false:
+			body.discovered = true
+			bodies -= 1
+
+func _on_light_area_body_exited(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		$"../CanvasLayer/debugs".text = ""

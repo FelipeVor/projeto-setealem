@@ -140,11 +140,16 @@ texture = ExtResource("5_k53q1")
 offset = Vector2(100, 0)
 
 [node name="PointLight2D" type="PointLight2D" parent="PointLight2D" unique_id=349219609]
-energy = 0.5
+energy = 0.3
 shadow_filter = 1
 shadow_filter_smooth = 1.0
 texture = ExtResource("5_k53q1")
 offset = Vector2(100, 0)
+
+[node name="light_area" type="Area2D" parent="PointLight2D" unique_id=1894284451]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PointLight2D/light_area" unique_id=2080334088]
+polygon = PackedVector2Array(24, 17, 57, 35, 120, 64, 142, 66, 162, 40, 169, 5, 164, -32, 152, -59, 136, -69, 121, -69, 27, -19, 27, -30, 6, -36, -10, -33, -24, -28, -31, -19, -33, -6, -31, 8, -29, 23, -18, 31, -4, 33, 14, 36)
 
 [node name="PointLight2D2" type="PointLight2D" parent="." unique_id=720972517]
 scale = Vector2(0.3, 0.3)
@@ -164,6 +169,8 @@ autostart = true
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_0sef1")
 
+[connection signal="body_entered" from="PointLight2D/light_area" to="." method="_on_light_area_body_entered"]
+[connection signal="body_exited" from="PointLight2D/light_area" to="." method="_on_light_area_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="stress_overtime"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
