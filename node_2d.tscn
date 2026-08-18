@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bp72y3xxsxsj" path="res://Player/player.tscn" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://dklxgam6fg1lc" path="res://icon.svg" id="2_0e48y"]
-[ext_resource type="Script" uid="uid://bfhmhwjfskk5y" path="res://Enemy.gd" id="2_epypp"]
+[ext_resource type="Script" uid="uid://bfhmhwjfskk5y" path="res://Hallu.gd" id="2_epypp"]
+[ext_resource type="PackedScene" uid="uid://dfpnwfaqaogiu" path="res://enemy.tscn" id="4_0hol4"]
 
 [sub_resource type="Gradient" id="Gradient_0e48y"]
 offsets = PackedFloat32Array(0.57228917)
@@ -30,19 +31,19 @@ color = Color(0.66656864, 0.6665687, 0.6665685, 1)
 [node name="Player" parent="." unique_id=1375523118 instance=ExtResource("1_wtcfe")]
 position = Vector2(202, 122)
 
-[node name="Enemy" type="CharacterBody2D" parent="." unique_id=1704915910]
+[node name="Hallu" type="CharacterBody2D" parent="." unique_id=1704915910]
 position = Vector2(364.00003, 83.00001)
 scale = Vector2(0.19921881, 0.19921881)
 script = ExtResource("2_epypp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=679507909]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hallu" unique_id=679507909]
 position = Vector2(-0.00012207031, -2.5098267)
 shape = SubResource("RectangleShape2D_0sef1")
 
-[node name="Icon" type="Sprite2D" parent="Enemy" unique_id=756171271]
+[node name="Icon" type="Sprite2D" parent="Hallu" unique_id=756171271]
 texture = ExtResource("2_0e48y")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Enemy/Icon" unique_id=2067633676]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Hallu/Icon" unique_id=2067633676]
 position = Vector2(55.215523, 60.235237)
 occluder = SubResource("OccluderPolygon2D_jswj6")
 
@@ -81,3 +82,8 @@ texture = ExtResource("2_0e48y")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Enemy2/Icon" unique_id=1489081127]
 position = Vector2(55.215523, 60.235237)
 occluder = SubResource("OccluderPolygon2D_jswj6")
+
+[node name="Enemy" parent="." unique_id=626690964 instance=ExtResource("4_0hol4")]
+position = Vector2(545, 207)
+
+[connection signal="stress_damage" from="Enemy" to="Player" method="_on_enemy_stress_damage"]

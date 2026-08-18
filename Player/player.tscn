@@ -134,7 +134,6 @@ animation = &"walk_back"
 position = Vector2(0, 1)
 energy = 0.5
 shadow_enabled = true
-shadow_filter = 2
 shadow_filter_smooth = 1.0
 texture = ExtResource("5_k53q1")
 offset = Vector2(100, 0)

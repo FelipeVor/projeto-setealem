@@ -10,7 +10,6 @@ var stress: float:
 		stress = clamp(value, 0.0, 100.0)
 var anim := "front"
 
-
 func _physics_process(_delta: float) -> void:
 	$"../CanvasLayer/Label".text = str("stress: ", stress)
 	
@@ -46,9 +45,6 @@ func _physics_process(_delta: float) -> void:
 func mouse_follow():
 	$PointLight2D.look_at(get_global_mouse_position())
 
-func set_stress(damage):
-	stress += damage
-
 func player():
 	pass
 
@@ -58,27 +54,29 @@ func stress_overtime():
 		stress += 3 * float(bodies)/10
 	else:
 		stress -= 1
-	print(stress)
-	
 #alucintaio
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.has_method("enemy"):
+	if body.has_method("hallu"):
 		if body.discovered == false:
+		
 			bodies += 1
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.has_method("enemy"):
+	if body.has_method("hallu"):
 		if body.discovered == false:
 			bodies -= 1
 
 func _on_light_area_body_entered(body: Node2D) -> void:
-	if body.has_method("enemy"):
+	if body.has_method("hallu"):
 		$"../CanvasLayer/debugs".text = "to vendo bixo"
 		if body.discovered == false:
 			body.discovered = true
 			bodies -= 1
 
 func _on_light_area_body_exited(body: Node2D) -> void:
-	if body.has_method("enemy"):
+	if body.has_method("hallu"):
 		$"../CanvasLayer/debugs".text = ""
+
+func take_stress_damage(damage) -> void:
+	stress += damage
