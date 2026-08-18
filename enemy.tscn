@@ -30,8 +30,15 @@ shape = SubResource("CapsuleShape2D_0sef1")
 [node name="Attack_timer" type="Timer" parent="." unique_id=1596208604]
 wait_time = 3.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1123593164]
+[node name="Vision" type="Area2D" parent="." unique_id=1140606360]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vision" unique_id=1123593164]
+position = Vector2(17, 25)
+rotation = 3.1330001
+polygon = PackedVector2Array(26, 21, 477, 268, 477, -233)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Attack_timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="Vision" to="." method="_on_vision_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_vision_exited"]

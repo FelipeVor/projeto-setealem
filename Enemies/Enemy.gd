@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
+@export var speed := 60
 @export var damage := 20
 @onready var timer: Timer = $Attack_timer
 var discovered := false
 var target: Node2D = null
+var target_follow: Node2D = null
 signal stress_damage
 
 
@@ -11,8 +13,11 @@ func _ready() -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
-	pass
-
+	if target_follow != null:
+		var direction = global_position.direction_to(target_follow.global_position)
+		velocity = direction * speed
+	move_and_slide()
+	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("take_stress_damage"):
 		target = body
@@ -26,3 +31,12 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_attack_timer_timeout() -> void:
 	target.take_stress_damage(damage)
+
+func _on_vision_entered(body: Node2D) -> void:
+	if body.has_method("take_stress_damage"):
+		target_follow = body
+	
+
+func _on_vision_exited(body: Node2D) -> void:
+	if body.has_method("take_stress_damage"):
+		target_follow = null
