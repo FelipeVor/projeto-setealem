@@ -114,8 +114,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0sef1"]
-radius = 126.0
-height = 328.0
+radius = 201.0
+height = 402.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1375523118]
 texture_filter = 1
@@ -146,6 +146,8 @@ texture = ExtResource("5_k53q1")
 offset = Vector2(100, 0)
 
 [node name="light_area" type="Area2D" parent="PointLight2D" unique_id=1894284451]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PointLight2D/light_area" unique_id=2080334088]
 polygon = PackedVector2Array(24, 17, 57, 35, 120, 64, 142, 66, 162, 40, 169, 5, 164, -32, 152, -59, 136, -69, 121, -69, 27, -19, 27, -30, 6, -36, -10, -33, -24, -28, -31, -19, -33, -6, -31, 8, -29, 23, -18, 31, -4, 33, 14, 36)
@@ -163,6 +165,8 @@ metadata/_custom_type_script = "uid://ch8pml4h00oje"
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1174792245]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1959858526]
 rotation = 1.5707964

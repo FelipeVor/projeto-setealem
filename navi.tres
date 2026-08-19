@@ -1,0 +1,7 @@
+[gd_resource type="NavigationPolygon" format=3 uid="uid://dfl74cr48xmcd"]
+
+[resource]
+vertices = PackedVector2Array(541.10156, 206.64844, 581.60156, 211.49219, 452.1328, 211.49219, 410.27344, 206.64844, 581.60156, 357.79688, 1124.3438, 464.27344, -476.8828, 480.3828, 452.1328, 357.79688, 770.5469, 190.10156, 1056.3828, -261.52344, 727.47656, 298.7422, 770.5469, 72.21875, -471.90625, -179.90625, 627.25, 72.21875, 627.25, 186.82813, 596.64844, 186.82813, 541.10156, 94.72656, 727.47656, 190.10156, 596.64844, 298.7422, 410.27344, 94.72656)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 5, 10), PackedInt32Array(9, 8, 11), PackedInt32Array(12, 9, 11, 13), PackedInt32Array(7, 6, 12, 3), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(10, 17, 8), PackedInt32Array(10, 5, 4, 18), PackedInt32Array(18, 4, 1, 15), PackedInt32Array(3, 2, 7), PackedInt32Array(19, 3, 12), PackedInt32Array(19, 12, 13, 16), PackedInt32Array(0, 16, 15, 1)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-501.69342, -208.36778, -507.11127, 510.68713, 1157.2539, 493.94327, 1083.571, -293.0172)])
+agent_radius = 30.0

@@ -59,13 +59,17 @@ func stress_overtime():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("hallu"):
 		if body.discovered == false:
-		
 			bodies += 1
+	if body.has_method("enemy"):
+		body.audio_play = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("hallu"):
 		if body.discovered == false:
 			bodies -= 1
+	if body.has_method("enemy"):
+		body.audio_play = false
+
 
 func _on_light_area_body_entered(body: Node2D) -> void:
 	if body.has_method("hallu"):
@@ -73,9 +77,15 @@ func _on_light_area_body_entered(body: Node2D) -> void:
 		if body.discovered == false:
 			body.discovered = true
 			bodies -= 1
+	if body.has_method("enemy"):
+		$"../CanvasLayer/debugs".text = "to vendo bixo que mata"
+		body.discovered = true
+		
 
 func _on_light_area_body_exited(body: Node2D) -> void:
 	if body.has_method("hallu"):
+		$"../CanvasLayer/debugs".text = ""
+	if body.has_method("enemy"):
 		$"../CanvasLayer/debugs".text = ""
 
 func take_stress_damage(damage) -> void:
