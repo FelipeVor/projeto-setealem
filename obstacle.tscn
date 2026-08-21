@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ldf26pljjqvv"]
+
+[sub_resource type="Gradient" id="Gradient_0hol4"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.12910539, 0.49621892, 0.54825664, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_17ljl"]
+gradient = SubResource("Gradient_0hol4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cj0om"]
+size = Vector2(22.039845, 21.07431)
+
+[node name="obstacle" type="StaticBody2D" unique_id=138429778]
+scale = Vector2(2.315978, -2.8768055)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1398627199]
+scale = Vector2(0.47744218, 0.47744218)
+texture = SubResource("GradientTexture2D_17ljl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1658652739]
+position = Vector2(1.1920929e-07, 2.9802322e-08)
+scale = Vector2(1.3611712, 1.4235342)
+shape = SubResource("RectangleShape2D_cj0om")

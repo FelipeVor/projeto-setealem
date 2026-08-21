@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Setealém project"
-run/main_scene="uid://c0tqm7m0tn1tc"
+run/main_scene="uid://b24doo0afs1k"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

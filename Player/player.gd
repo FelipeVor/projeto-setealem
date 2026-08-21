@@ -1,17 +1,31 @@
 extends CharacterBody2D
 
 const SPEED = 100
-var bodies: int:
+
+var bodies_hallu: int:
 	set(value):
-		bodies = clamp(value, 0, 100)
+		bodies_hallu = clamp(value, 0, 100)
+var bodies_enemy: int:
+	set(value):
+		bodies_enemy = clamp(value, 0, 100)
+
+
 var stress_regen: int
 var stress: float:
 	set(value):
 		stress = clamp(value, 0.0, 100.0)
 var anim := "front"
 
+var target_body: Array
+var rays: Array
+
+
 func _physics_process(_delta: float) -> void:
 	$"../CanvasLayer/Label".text = str("stress: ", stress)
+	
+	ray_to_body(target_body)
+	
+	ray_check()
 	
 	mouse_follow()
 	
@@ -41,7 +55,37 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction * SPEED
 	
 	move_and_slide()
-	
+
+func ray_to_body(body_list: Array):
+	if body_list != []:
+		#print("bodies:", target_body)
+		#print("rays", rays)
+		for body in body_list:
+			for ray in rays:
+				ray.target_position = to_local(body.position)
+				#print("ray_pos:", ray.target_position)
+				
+func ray_check():
+	for body in target_body:
+		var index = target_body.find(body)
+		rays[index].force_raycast_update()
+		if rays[index].is_colliding():
+			print("ray do ", body.name, " colidiu com ", rays[index].get_collider().name)
+			$"../CanvasLayer/debugs".text = ""
+		else:
+			if body.has_method("hallu"):
+				$"../CanvasLayer/debugs".text = "to vendo bixo"
+				if body.discovered == false:
+					body.discovered = true
+					stress -= 5
+					bodies_hallu -= 1
+			if body.has_method("enemy"):
+				$"../CanvasLayer/debugs".text = "to vendo bixo que mata"
+				if body.discovered == false:
+					body.discovered = true
+					bodies_enemy -= 1
+
+
 func mouse_follow():
 	$PointLight2D.look_at(get_global_mouse_position())
 
@@ -49,44 +93,46 @@ func player():
 	pass
 
 func stress_overtime():
-	$"../CanvasLayer/bodies".text = str("bodies: ", bodies)
-	if bodies >= 1:
-		stress += 3 * float(bodies)/10
+	$"../CanvasLayer/bodies".text = str("bodies: ", bodies_hallu)
+	if bodies_hallu >= 1:
+		stress += 8 * float(bodies_hallu)/10
 	else:
-		stress -= 1
-#alucintaio
+		stress -= 0.2
+	if bodies_enemy >= 1:
+		stress += 15 * float(bodies_enemy)/10
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.has_method("hallu"):
-		if body.discovered == false:
-			bodies += 1
-	if body.has_method("enemy"):
-		body.audio_play = true
+		if body.has_method("hallu"):
+			if body.discovered == false:
+				bodies_hallu += 1
+		if body.has_method("enemy"):
+			if body.discovered == false:
+				bodies_enemy += 1
+				body.audio_play = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("hallu"):
 		if body.discovered == false:
-			bodies -= 1
+			bodies_hallu -= 1
 	if body.has_method("enemy"):
-		body.audio_play = false
-
+		if body.discovered == false:
+			bodies_enemy -= 1
+			body.audio_play = false
 
 func _on_light_area_body_entered(body: Node2D) -> void:
-	if body.has_method("hallu"):
-		$"../CanvasLayer/debugs".text = "to vendo bixo"
-		if body.discovered == false:
-			body.discovered = true
-			bodies -= 1
-	if body.has_method("enemy"):
-		$"../CanvasLayer/debugs".text = "to vendo bixo que mata"
-		body.discovered = true
-		
+	target_body.append(body)
+	var ray := RayCast2D.new()
+	add_child(ray)
+	rays.append(ray)
 
 func _on_light_area_body_exited(body: Node2D) -> void:
-	if body.has_method("hallu"):
-		$"../CanvasLayer/debugs".text = ""
-	if body.has_method("enemy"):
-		$"../CanvasLayer/debugs".text = ""
+	var index = target_body.find(body)
+	target_body.erase(body)
+	if index > -1:
+		var ray = rays[index]
+		ray.queue_free()
+		rays.remove_at(index)
+	$"../CanvasLayer/debugs".text = ""
 
 func take_stress_damage(damage) -> void:
 	stress += damage
