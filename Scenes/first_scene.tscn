@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bmkho6bugbc67"]
+
+[ext_resource type="Texture2D" uid="uid://dxcyaf1v16k1l" path="res://mother.png" id="1_fhmhh"]
+[ext_resource type="PackedScene" uid="uid://bp72y3xxsxsj" path="res://Player/player.tscn" id="2_nbyko"]
+[ext_resource type="PackedScene" uid="uid://f8uaauc14rh2" path="res://Scenes/simple_dialogue.tscn" id="3_nbyko"]
+
+[node name="FirstScene-Kitchen" type="Node2D" unique_id=447062917]
+y_sort_enabled = true
+
+[node name="Mother" type="Sprite2D" parent="." unique_id=489483175]
+texture_filter = 1
+position = Vector2(235, 57)
+texture = ExtResource("1_fhmhh")
+
+[node name="Player" parent="." unique_id=1375523118 instance=ExtResource("2_nbyko")]
+position = Vector2(185, 133)
+
+[node name="SimpleDialogue" parent="." unique_id=1387387788 instance=ExtResource("3_nbyko")]

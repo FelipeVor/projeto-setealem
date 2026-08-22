@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://56im43b5uf7c"]
+
+[ext_resource type="Script" uid="uid://bfhmhwjfskk5y" path="res://Enemies/Hallu/Hallu.gd" id="1_h2wke"]
+[ext_resource type="Texture2D" uid="uid://dklxgam6fg1lc" path="res://icon.svg" id="2_ksbyx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sef1"]
+size = Vector2(120.47046, 115.45099)
+
+[node name="Hallu" type="CharacterBody2D" unique_id=2031254581]
+scale = Vector2(0.19921881, 0.19921881)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_h2wke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609611801]
+position = Vector2(-0.00012207031, -2.5098267)
+shape = SubResource("RectangleShape2D_0sef1")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1196312213]
+texture = ExtResource("2_ksbyx")

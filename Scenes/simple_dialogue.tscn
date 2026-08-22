@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://f8uaauc14rh2"]
+
+[ext_resource type="Texture2D" uid="uid://dioh7jxavpge8" path="res://Faces/Arthur.png" id="1_rqs4q"]
+[ext_resource type="Script" uid="uid://c6un4qfcy6yc7" path="res://Scenes/simple_dialogue.gd" id="1_u27u7"]
+[ext_resource type="FontFile" uid="uid://blsg82n4282yg" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="2_e2vle"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17ljl"]
+bg_color = Color(0, 0, 0, 0.4862745)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_fxtps"]
+font = ExtResource("2_e2vle")
+font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxtps"]
+bg_color = Color(0.37381873, 0.34817114, 0.42528775, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+corner_radius_top_left = 10
+
+[node name="SimpleDialogue" type="CanvasLayer" unique_id=1387387788]
+process_mode = 3
+script = ExtResource("1_u27u7")
+
+[node name="DialogueBox" type="Control" parent="." unique_id=1285658550]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="DialogueBox" unique_id=1695957739]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_17ljl")
+
+[node name="Text" type="Label" parent="DialogueBox" unique_id=1442566105]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -24.5
+offset_bottom = 24.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "Diálogo massa
+"
+label_settings = SubResource("LabelSettings_fxtps")
+
+[node name="Icon" type="Control" parent="DialogueBox" unique_id=1171232567]
+texture_filter = 1
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="ColorRect" type="Panel" parent="DialogueBox/Icon" unique_id=803586098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxtps")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueBox/Icon" unique_id=46946004]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Face" type="Sprite2D" parent="DialogueBox/Icon/HBoxContainer" unique_id=1676484573]
+position = Vector2(0, 3)
+scale = Vector2(3, 3)
+texture = ExtResource("1_rqs4q")

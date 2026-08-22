@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://bp72y3xxsxsj"]
 
 [ext_resource type="Script" uid="uid://c5vnxtt4ho7oc" path="res://Player/player.gd" id="1_ij6vw"]
-[ext_resource type="Texture2D" uid="uid://du4nitbpgbai6" path="res://Player/jose_walk-Sheet.png" id="2_ij6vw"]
-[ext_resource type="Texture2D" uid="uid://c7id0g8u2s8v2" path="res://Player/jose_walk-back-Sheet.png" id="3_dd465"]
+[ext_resource type="Texture2D" uid="uid://du4nitbpgbai6" path="res://Player/arthur_walk-Sheet.png" id="2_ij6vw"]
+[ext_resource type="Texture2D" uid="uid://c7id0g8u2s8v2" path="res://Player/arthur_walk-back-Sheet.png" id="3_dd465"]
 [ext_resource type="Texture2D" uid="uid://c5b27s5hrnsri" path="res://FlashlightRadius.png" id="5_k53q1"]
-[ext_resource type="Texture2D" uid="uid://bfxy4lhh0t0op" path="res://Player/jose_walk-side-Sheet.png" id="5_lhvu3"]
+[ext_resource type="Texture2D" uid="uid://bfxy4lhh0t0op" path="res://Player/arthur_walk-side-Sheet.png" id="5_lhvu3"]
 [ext_resource type="Texture2D" uid="uid://bt543v66lbe8t" path="res://light.jpg" id="6_fhl08"]
 [ext_resource type="Script" uid="uid://ch8pml4h00oje" path="res://Player/stress.gd" id="7_vtle1"]
 [ext_resource type="AudioStream" uid="uid://cfkueiywgj34p" path="res://ambience.wav" id="8_00tjw"]
 [ext_resource type="AudioStream" uid="uid://bbllwfmc3ii04" path="res://heartbeat.wav" id="9_x3vf3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2m8d"]
-height = 50.0
+radius = 5.0
+height = 18.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qp52p"]
 atlas = ExtResource("3_dd465")
@@ -115,22 +116,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17ljl"]
-radius = 57.14286
-height = 160.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0sef1"]
 radius = 201.0
 height = 402.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fxtps"]
-radius = 41.0
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_17ljl"]
+radius = 339.58945
 
 [node name="Player" type="CharacterBody2D" unique_id=1375523118]
 texture_filter = 1
 script = ExtResource("1_ij6vw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749370900]
+position = Vector2(0, 19)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_y2m8d")
 
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=1310721097]
@@ -140,6 +142,7 @@ animation = &"walk_back"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=681862998]
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=204567008]
+visible = false
 position = Vector2(0, 1)
 scale = Vector2(0.7, 0.5)
 energy = 0.5
@@ -160,12 +163,11 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PointLight2D/light_area" unique_id=519789451]
+visible = false
 polygon = PackedVector2Array(38.333332, 12.5, 131.66666, 51.25, 153.33333, -1.25, 128.33333, -52.5, 18.333332, -8.75, 18.333332, 8.75)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PointLight2D/light_area" unique_id=2130397946]
-shape = SubResource("CapsuleShape2D_17ljl")
-
 [node name="PointLight2D2" type="PointLight2D" parent="." unique_id=720972517]
+visible = false
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("6_fhl08")
 
@@ -182,6 +184,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1959858526]
+visible = false
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_0sef1")
 
@@ -190,19 +193,35 @@ stream = ExtResource("8_00tjw")
 volume_db = -20.0
 autoplay = true
 
-[node name="hearth" type="AudioStreamPlayer2D" parent="." unique_id=1386655951]
+[node name="heart" type="AudioStreamPlayer2D" parent="." unique_id=1386655951]
 stream = ExtResource("9_x3vf3")
 autoplay = true
 
 [node name="close_area" type="Area2D" parent="." unique_id=1439327663]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="close_area" unique_id=519635438]
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_fxtps")
 debug_color = Color(0.6692733, 0.5077705, 0.13229126, 0.41960785)
+
+[node name="spawn_area" type="Area2D" parent="." unique_id=1269526931]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spawn_area" unique_id=2130726373]
+visible = false
+shape = SubResource("CircleShape2D_17ljl")
+debug_color = Color(0.8464746, 0.26917127, 0.66913176, 0.41960785)
+
+[node name="Timer-Enemy" type="Timer" parent="." unique_id=1569512221]
+wait_time = 10.0
+autostart = true
 
 [connection signal="body_entered" from="PointLight2D/light_area" to="." method="_on_light_area_body_entered"]
 [connection signal="body_exited" from="PointLight2D/light_area" to="." method="_on_light_area_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="stress_overtime"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="close_area" to="." method="_on_close_area_body_entered"]
+[connection signal="timeout" from="Timer-Enemy" to="." method="_on_timer_enemy_timeout"]

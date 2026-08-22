@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://d4lasgtim7mow"]
+
+[ext_resource type="Script" uid="uid://dfd43b2u5l5mq" path="res://Scenes/city.gd" id="1_kyn5i"]
+[ext_resource type="PackedScene" uid="uid://bp72y3xxsxsj" path="res://Player/player.tscn" id="1_u7naw"]
+[ext_resource type="Texture2D" uid="uid://c1vcfkk5tbdql" path="res://Tiles/tile_set.png" id="3_o60eo"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fxtps"]
+vertices = PackedVector2Array(592.3203, -102.71875, 610.6328, 306.07813, 335.03125, 79.13281, 334.27344, 70.75781, 333.96875, 150.90625, 333.85156, 190.14844, 114.59375, 69.63281, -72.00781, 10.2109375, -76.671875, -96.28906, 194.59375, 69.63281, 114.5, 77.40625, 112.109375, 77.39844, 114.67969, 198.49219, 194.67188, 198.04688, 194.67969, 198.49219, -69.27344, 307.90625, 333.29688, 197.72656, 333.40625, 190.14844, 113.32031, 190.14844, 194.57813, 70.27344, 114.50781, 190.14844, 113.71094, 152.27344, 334.22656, 79.109375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(6, 7, 8, 0, 9), PackedInt32Array(6, 10, 11, 7), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 5, 1), PackedInt32Array(16, 1, 15, 14), PackedInt32Array(12, 15, 7, 18), PackedInt32Array(9, 19, 6), PackedInt32Array(18, 20, 12), PackedInt32Array(21, 18, 7, 11), PackedInt32Array(3, 9, 0), PackedInt32Array(3, 2, 22)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-102, 11, -99, 338, 642, 336, 621, -133, -108, -126)])
+agent_radius = 30.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3qy6o"]
+texture = ExtResource("3_o60eo")
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+11:9/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+0:0/size_in_atlas = Vector2i(6, 6)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -8)
+0:0/0/y_sort_origin = 20
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-39.717308, -4.1349564, 40.152557, -3.4820633, 39.934937, 56.1483, -40.370193, 56.1483)
+0:6/size_in_atlas = Vector2i(6, 7)
+0:6/0 = 0
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-39.717308, -4.1349564, 40.152557, -3.4820633, 39.934937, 56.1483, -40.370193, 56.1483)
+0:13/size_in_atlas = Vector2i(6, 5)
+0:13/0 = 0
+0:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-39.717308, -4.1349564, 40.152557, -3.4820633, 39.934937, 56.1483, -40.370193, 56.1483)
+0:18/size_in_atlas = Vector2i(6, 1)
+0:18/0 = 0
+0:18/0/z_index = -4
+0:18/0/y_sort_origin = 20
+0:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-41.2407, -60.392063, 40.587814, -59.52155, 39.7173, -0.108818054, -39.934937, 0.3264389)
+
+[sub_resource type="TileSet" id="TileSet_fxtps"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_3qy6o")
+
+[node name="City" type="Node2D" unique_id=930355301]
+y_sort_enabled = true
+script = ExtResource("1_kyn5i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1032819683]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=728884465]
+visible = false
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0, 0, 0, 1)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1543344845]
+y_sort_enabled = true
+position = Vector2(296, 305)
+
+[node name="Player" parent="Enemies" unique_id=1375523118 instance=ExtResource("1_u7naw")]
+y_sort_enabled = true
+position = Vector2(-232, -267)
+other_world = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=889636065]
+y_sort_enabled = true
+navigation_polygon = SubResource("NavigationPolygon_fxtps")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" unique_id=461200059]
+y_sort_enabled = true
+texture_filter = 1
+tile_map_data = PackedByteArray(0, 0, 11, 0, 6, 0, 0, 0, 0, 0, 6, 0, 0, 0, 16, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 10, 0, 0, 0, 0, 0, 18, 0, 0, 0, 16, 0, 10, 0, 0, 0, 0, 0, 18, 0, 0, 0)
+tile_set = SubResource("TileSet_fxtps")
