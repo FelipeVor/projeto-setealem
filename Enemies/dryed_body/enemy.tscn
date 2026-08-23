@@ -1428,7 +1428,7 @@ shape = SubResource("CircleShape2D_fxtps")
 
 [node name="alert" type="AudioStreamPlayer2D" parent="." unique_id=488403441]
 stream = SubResource("AudioStreamWAV_4gyqm")
-volume_db = -10.0
+volume_db = -2.0
 pitch_scale = 0.5
 max_distance = 300.0
 panning_strength = 2.12

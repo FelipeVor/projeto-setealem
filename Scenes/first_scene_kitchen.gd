@@ -42,6 +42,7 @@ var text10: Array[String] = [
 ]
 
 func _ready() -> void:
+	$Player.cutscene = true
 	$Player/Camera2D.set_as_top_level(true)
 	$Player/Camera2D.global_position = Vector2(240, 135)
 	$SimpleDialogue/CanvasLayer/ColorRect.color.a = 1

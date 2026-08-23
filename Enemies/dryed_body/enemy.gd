@@ -10,15 +10,24 @@ var step := false
 
 var discovered := false
 
+var die := false
+
 func enemy():
 	pass
 
 func _physics_process(_delta: float) -> void:
 	audio()
 	was_discovered()
+	
+	if die:
+		if self.modulate.a > 0:
+			self.modulate.a -= 0.02
+		else:
+			player.enemy_num -= 1
+			queue_free()
 
 	if not discovered:
-		self.visible = true
+		self.visible = false
 
 		dist = int(player.global_position.distance_to(global_position))
 		dist = clamp(dist, 2, 1000)
@@ -66,6 +75,7 @@ func was_discovered():
 		audio_play = false
 		self.visible = true
 		$footstep.volume_db = 0
+		$detect_player.scale = Vector2(0.5,0.5)
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
@@ -82,5 +92,4 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 func _on_detect_player_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
-		player.enemy_num -= 1
-		queue_free()
+		die = true

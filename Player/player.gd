@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 100
+var SPEED = 100
 
 var direction: Vector2 = Vector2.ZERO
 var direction_light: Vector2 = Vector2.ZERO
@@ -20,22 +20,31 @@ var stress_regen: int
 var stress: float:
 	set(value):
 		stress = clamp(value, 0.0, 100.0)
-var anim := "front"
+var anim := "walk_front"
 
 var target_body: Array
 var rays: Array
 var timers: Array
 
 @export var other_world := false
+@export var enimies_spawn := false
 
 var enemy_num := 0
+var lantern := false
 
 var cutscene := false
 
 func _ready() -> void:
 	if other_world:
+		$Camera2D.limit_enabled = false
 		$heart.playing = true
 		$bg_other.playing = true
+		if lantern:
+			$PointLight2D.visible = true
+		else:
+			$PointLight2D/light_area.disable_mode = true
+		$PointLight2D2.visible = true
+		
 	else:
 		$heart.playing = false
 		$bg_other.playing = false
@@ -92,6 +101,9 @@ func ray_check(delta: float):
 	for body in target_body:
 		var index = target_body.find(body)
 		rays[index].force_raycast_update()
+		if body.has_method("sac_man"):
+			if timers[index] < 0.30:
+				timers[index] = 0.30
 		timers[index] += delta
 		print(timers[index])
 		if timers[index] >= 0.45:
@@ -103,10 +115,20 @@ func ray_check(delta: float):
 						body.discovered = true
 						stress -= 5
 						bodies_hallu -= 1
+						if randf() < (stress / 100.0) * 2:
+							print("spawnei")
+							var ene = ENEMY.instantiate()
+							get_parent().add_child(ene)
+							ene.global_position = body.global_position
 				if body.has_method("enemy"):
 					if body.discovered == false:
 						body.discovered = true
 						bodies_enemy -= 1
+				if body.has_method("sac_man"):
+					if body.discovered == false:
+						if body.status == "run-":
+							bodies_enemy -= 1
+							body.die = true
 
 func get_random_area() -> Vector2:
 	var col_shape = spawn_area.get_node("CollisionShape2D")
@@ -177,10 +199,16 @@ func _on_close_area_body_entered(body: Node2D) -> void:
 		stress += 30
 		body.discovered = true
 		bodies_enemy -= 1
+	if body.has_method("sac_man"):
+		print("batata")
+		body.status = "attack-"
+		velocity = Vector2.ZERO
+		SPEED = 0
+		cutscene = true
 
 
 func _on_timer_enemy_timeout() -> void:
-	if other_world:
+	if enimies_spawn:
 		print("Timer disparou! Tentando spawnar... Inimigos atuais: ", enemy_num)
 		if enemy_num <= 4:
 			var ene = ENEMY.instantiate()

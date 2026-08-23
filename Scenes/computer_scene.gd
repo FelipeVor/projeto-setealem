@@ -7,8 +7,7 @@ var text1 : Array[String] = [
 	"Deixe de ser sem noção, tá querendo se aparecer? Vai pra
 	um circo, palhaço.",
 	"Seteaquém? Historinha de criança...",
-	"Até parece que algo assim possa existir.", 
-	"Normie cai em cada merda..."
+	"Até parece que algo assim possa existir. Normie cai em cada merda..." 
 ]
 var porta : Array[String] = [
 	"TOC TOC TOC TOC "

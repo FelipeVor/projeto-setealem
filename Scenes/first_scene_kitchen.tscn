@@ -116,9 +116,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="ColorRect7" type="ColorRect" parent="ColorRect6" unique_id=1067030837]
 layout_mode = 0
-offset_left = 487.0
+offset_left = 590.135
 offset_top = 268.0
-offset_right = 549.0
+offset_right = 755.27
 offset_bottom = 538.0
 scale = Vector2(-1, -1)
 color = Color(0, 0, 0, 1)
@@ -128,6 +128,6 @@ layout_mode = 0
 offset_left = 54.0
 offset_top = 15.0
 offset_right = 116.0
-offset_bottom = 457.80237
+offset_bottom = 536.8933
 rotation = -1.5707964
 color = Color(0, 0, 0, 1)

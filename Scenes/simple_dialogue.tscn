@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://blsg82n4282yg" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="2_e2vle"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17ljl"]
-bg_color = Color(0, 0, 0, 0.4862745)
+bg_color = Color(0, 0, 0, 0.61960787)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
