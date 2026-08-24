@@ -6,12 +6,12 @@ var text1 : Array[String] = [
 ]
 
 var text2 : Array[String] = [
-	"Não passe por aqui não viu, esse caminho dá no seteaquém.",
+	"Não passe por aqui não, viu, esse caminho dá no seteaquém.",
 ]
 
 var text3 : Array[String] = [
-	"Cala a boca velho, seu bafo tá podre",
-	'"Seteaquém" haha',
+	"Cala a boca velho, seu bafo tá podre.",
+	'"Seteaquém" haha.',
 ]
 
 var enter := false

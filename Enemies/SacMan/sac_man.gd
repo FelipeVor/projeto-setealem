@@ -32,25 +32,34 @@ func status_change(delta):
 
 func _ready():
 	randomize()
-	timer_status = randf_range(2.0, 5.0)
+	timer_status = randf_range(10.0, 15.0)
 	
 
 
 func _physics_process(delta: float) -> void:
+	print(discovered)
 	
 	status_change(delta)
 	if die:
-		if self.modulate.a > 0:
-			self.modulate.a -= 0.02
+		if discovered:
+			if self.modulate.a > 0:
+				self.modulate.a -= 0.02
+			else:
+				player.cutscene = false
+				queue_free()
 		else:
 			player.lantern = false
-			player.cutscene = false
-			queue_free()
+			if self.modulate.a > 0:
+				self.modulate.a -= 0.02
+			else:
+				player.lantern = false
+				player.cutscene = false
+				queue_free()
 
 	if status != "run-":
 		dist = int(player.global_position.distance_to(global_position))
 		dist = clamp(dist, 2, 1000)
-		if dist < 180 or not detect:
+		if dist < 180 or not detect or discovered:
 			dist = 0
 	else:
 		if die:
@@ -84,7 +93,6 @@ func _physics_process(delta: float) -> void:
 	elif new_velocity.x < -0.5 and new_velocity.y < -0.5:
 		anim = "upLeft"
 		
-	print(status)
 	if not come:
 		if status == "attack-" and $AnimatedSprite2D.frame >= 25:
 			come = true
@@ -96,6 +104,7 @@ func _physics_process(delta: float) -> void:
 					die_screen.die = true
 					get_tree().paused = true
 			else:
+				player.lantern = false
 				die = true
 		else:
 			$AnimatedSprite2D.play(status + anim)
@@ -104,7 +113,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	var speed := 300
 	if status != "run-":
 		speed = lerp(0.0, 500.0, float(dist) / 1000.0)
-	if die or not detect:
+	if die or not detect or discovered:
 		speed = 0
 
 	velocity = velocity.move_toward(

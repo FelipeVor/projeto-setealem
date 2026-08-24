@@ -46,7 +46,6 @@ func _ready() -> void:
 		$bg_other.playing = false
 
 func _physics_process(delta: float) -> void:
-	print(lantern)
 	
 	if other_world:
 		if lantern:
@@ -129,8 +128,8 @@ func ray_check(delta: float):
 						bodies_enemy -= 1
 				if body.has_method("sac_man"):
 					if body.discovered == false:
+						body.discovered = true
 						if body.status == "run-":
-							bodies_enemy -= 1
 							body.die = true
 
 func get_random_area() -> Vector2:
