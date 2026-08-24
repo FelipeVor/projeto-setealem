@@ -37,6 +37,7 @@ func _ready():
 
 
 func _physics_process(delta: float) -> void:
+	print(discovered)
 	
 	status_change(delta)
 	if die:
@@ -47,6 +48,7 @@ func _physics_process(delta: float) -> void:
 				player.cutscene = false
 				queue_free()
 		else:
+			player.lantern = false
 			if self.modulate.a > 0:
 				self.modulate.a -= 0.02
 			else:
@@ -91,7 +93,6 @@ func _physics_process(delta: float) -> void:
 	elif new_velocity.x < -0.5 and new_velocity.y < -0.5:
 		anim = "upLeft"
 		
-	print(status)
 	if not come:
 		if status == "attack-" and $AnimatedSprite2D.frame >= 25:
 			come = true
@@ -103,6 +104,7 @@ func _physics_process(delta: float) -> void:
 					die_screen.die = true
 					get_tree().paused = true
 			else:
+				player.lantern = false
 				die = true
 		else:
 			$AnimatedSprite2D.play(status + anim)

@@ -46,7 +46,6 @@ func _ready() -> void:
 		$bg_other.playing = false
 
 func _physics_process(delta: float) -> void:
-	print(lantern)
 	
 	if other_world:
 		if lantern:
@@ -105,8 +104,8 @@ func ray_check(delta: float):
 		var index = target_body.find(body)
 		rays[index].force_raycast_update()
 		if body.has_method("sac_man"):
-			if timers[index] < 0.45:
-				timers[index] = 0.45
+			if timers[index] < 0.30:
+				timers[index] = 0.30
 		timers[index] += delta
 		print(timers[index])
 		if timers[index] >= 0.45:
