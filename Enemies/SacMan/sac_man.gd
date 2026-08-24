@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 				queue_free()
 
 	if status != "run-":
-a		dist = int(player.global_position.distance_to(global_position))
+		dist = int(player.global_position.distance_to(global_position))
 		dist = clamp(dist, 2, 1000)
 		if dist < 180 or not detect or discovered:
 			dist = 0
