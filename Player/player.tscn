@@ -211,6 +211,7 @@ shape = SubResource("CircleShape2D_fxtps")
 debug_color = Color(0.6692733, 0.5077705, 0.13229126, 0.41960785)
 
 [node name="spawn_area" type="Area2D" parent="." unique_id=1269526931]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spawn_area" unique_id=2130726373]
 shape = SubResource("CircleShape2D_17ljl")
