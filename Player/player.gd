@@ -105,8 +105,8 @@ func ray_check(delta: float):
 		var index = target_body.find(body)
 		rays[index].force_raycast_update()
 		if body.has_method("sac_man"):
-			if timers[index] < 0.30:
-				timers[index] = 0.30
+			if timers[index] < 0.45:
+				timers[index] = 0.45
 		timers[index] += delta
 		print(timers[index])
 		if timers[index] >= 0.45:
@@ -129,8 +129,8 @@ func ray_check(delta: float):
 						bodies_enemy -= 1
 				if body.has_method("sac_man"):
 					if body.discovered == false:
+						body.discovered = true
 						if body.status == "run-":
-							bodies_enemy -= 1
 							body.die = true
 
 func get_random_area() -> Vector2:
