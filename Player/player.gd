@@ -30,7 +30,7 @@ var timers: Array
 @export var enimies_spawn := false
 
 var enemy_num := 0
-var lantern := false
+@export var lantern := false
 
 var cutscene := false
 
@@ -39,10 +39,6 @@ func _ready() -> void:
 		$Camera2D.limit_enabled = false
 		$heart.playing = true
 		$bg_other.playing = true
-		if lantern:
-			$PointLight2D.visible = true
-		else:
-			$PointLight2D/light_area.disable_mode = true
 		$PointLight2D2.visible = true
 		
 	else:
@@ -50,8 +46,15 @@ func _ready() -> void:
 		$bg_other.playing = false
 
 func _physics_process(delta: float) -> void:
+	print(lantern)
 	
 	if other_world:
+		if lantern:
+			$PointLight2D.visible = true
+			$PointLight2D/light_area/CollisionPolygon2D.disabled = false
+		else:
+			$PointLight2D.visible = false
+			$PointLight2D/light_area/CollisionPolygon2D.disabled = true
 		$heart.pitch_scale = lerp(0.5, 4.0, stress/100)
 		ray_to_body(target_body)
 		ray_check(delta)
@@ -203,8 +206,7 @@ func _on_close_area_body_entered(body: Node2D) -> void:
 		print("batata")
 		body.status = "attack-"
 		velocity = Vector2.ZERO
-		SPEED = 0
-		cutscene = true
+		stress += 20
 
 
 func _on_timer_enemy_timeout() -> void:
@@ -216,3 +218,11 @@ func _on_timer_enemy_timeout() -> void:
 			ene.visible = false
 			ene.position = get_random_area()
 			enemy_num += 1
+
+
+func _on_close_area_area_entered(area: Area2D) -> void:
+	if area.has_method("lantern"):
+		if not lantern:
+			print("lanterna eim")
+			lantern = true
+			area.queue_free()

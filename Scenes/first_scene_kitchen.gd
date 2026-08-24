@@ -45,6 +45,7 @@ func _ready() -> void:
 	$Player.cutscene = true
 	$Player/Camera2D.set_as_top_level(true)
 	$Player/Camera2D.global_position = Vector2(240, 135)
+	$Player/Camera2D.limit_enabled = false
 	$SimpleDialogue/CanvasLayer/ColorRect.color.a = 1
 	
 	# Inicia a sequência principal
@@ -87,7 +88,7 @@ func second_part() -> void:
 	
 	await get_tree().create_timer(1.5).timeout
 	$SimpleDialogue.start_dialogue(text4, "Mother")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.2).timeout
 	$Player.direction = Vector2.ZERO
 	await get_tree().create_timer(0.5).timeout
 	
@@ -105,7 +106,7 @@ func second_part() -> void:
 	
 	await get_tree().create_timer(1.5).timeout
 	$SimpleDialogue.start_dialogue(text6, "Mother")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.2).timeout
 	$Player.direction = Vector2.ZERO
 	await get_tree().create_timer(0.5).timeout
 	

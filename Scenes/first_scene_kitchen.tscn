@@ -4,9 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dxcyaf1v16k1l" path="res://mother.png" id="1_ly4tj"]
 [ext_resource type="PackedScene" uid="uid://bp72y3xxsxsj" path="res://Player/player.tscn" id="2_awvqa"]
 [ext_resource type="PackedScene" uid="uid://f8uaauc14rh2" path="res://Scenes/simple_dialogue.tscn" id="3_os3e0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxtps"]
-size = Vector2(10, 35.51898)
+[ext_resource type="Texture2D" uid="uid://bg1ngd15qf0ru" path="res://kitchen.png" id="5_os3e0"]
 
 [node name="FirstScene-Kitchen" type="Node2D" unique_id=447062917]
 process_mode = 3
@@ -19,13 +17,7 @@ position = Vector2(235, 57)
 texture = ExtResource("1_ly4tj")
 
 [node name="Player" parent="." unique_id=1375523118 instance=ExtResource("2_awvqa")]
-position = Vector2(-23, 115)
-
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1920142473]
-custom_minimum_size = Vector2(480, 270)
-offset_right = 480.0
-offset_bottom = 270.0
-color = Color(0.46, 0.24019668, 0.1794, 1)
+position = Vector2(-22, 148)
 
 [node name="SimpleDialogue" parent="." unique_id=1387387788 instance=ExtResource("3_os3e0")]
 layer = 4
@@ -38,96 +30,7 @@ offset_right = 480.0
 offset_bottom = 270.0
 color = Color(0, 0, 0, 0)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2021518758]
-offset_left = 61.0
-offset_top = 8.0
-offset_right = 71.0
-offset_bottom = 15.88496
-scale = Vector2(1.1482569, 31.325457)
-color = Color(0.37036446, 0.3703645, 0.37036446, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect" unique_id=1965609791]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/StaticBody2D" unique_id=1988732689]
-position = Vector2(4.9069595, 3.9526935)
-scale = Vector2(0.934555, 0.22141783)
-shape = SubResource("RectangleShape2D_fxtps")
-
-[node name="ColorRect3" type="ColorRect" parent="." unique_id=220706627]
-offset_left = 430.32095
-offset_top = 246.00002
-offset_right = 440.32095
-offset_bottom = 253.88498
-rotation = 1.5707964
-scale = Vector2(1.1482569, 46.965458)
-color = Color(0.37036446, 0.3703645, 0.37036446, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect3" unique_id=1393250504]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect3/StaticBody2D" unique_id=287821428]
-position = Vector2(4.9069595, 3.9526935)
-scale = Vector2(0.934555, 0.22141783)
-shape = SubResource("RectangleShape2D_fxtps")
-
-[node name="ColorRect4" type="ColorRect" parent="." unique_id=435430102]
-offset_left = 416.0
-offset_top = 11.0
-offset_right = 426.0
-offset_bottom = 18.88496
-scale = Vector2(1.1482569, 31.325457)
-color = Color(0.37036446, 0.3703645, 0.37036446, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect4" unique_id=1337661963]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect4/StaticBody2D" unique_id=361597428]
-position = Vector2(4.9069595, 3.9526935)
-scale = Vector2(0.934555, 0.22141783)
-shape = SubResource("RectangleShape2D_fxtps")
-
-[node name="ColorRect5" type="ColorRect" parent="." unique_id=1671496259]
-offset_left = 430.32098
-offset_top = 10.000016
-offset_right = 440.32098
-offset_bottom = 17.88498
-rotation = 1.5707964
-scale = Vector2(1.1482569, 46.965458)
-color = Color(0.37036446, 0.3703645, 0.37036446, 1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect5" unique_id=642184464]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect5/StaticBody2D" unique_id=1345184582]
-position = Vector2(4.9069595, 3.9526935)
-scale = Vector2(0.934555, 0.22141783)
-shape = SubResource("RectangleShape2D_fxtps")
-
-[node name="ColorRect6" type="ColorRect" parent="." unique_id=1713852320]
-offset_right = 62.0
-offset_bottom = 270.0
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect6" type="ColorRect" parent="ColorRect6" unique_id=678362129]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 15.0
-offset_right = 116.0
-offset_bottom = 457.80237
-rotation = -1.5707964
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect7" type="ColorRect" parent="ColorRect6" unique_id=1067030837]
-layout_mode = 0
-offset_left = 590.135
-offset_top = 268.0
-offset_right = 755.27
-offset_bottom = 538.0
-scale = Vector2(-1, -1)
-color = Color(0, 0, 0, 1)
-
-[node name="ColorRect6" type="ColorRect" parent="ColorRect6/ColorRect7" unique_id=1974125740]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 15.0
-offset_right = 116.0
-offset_bottom = 536.8933
-rotation = -1.5707964
-color = Color(0, 0, 0, 1)
+[node name="Kitchen" type="Sprite2D" parent="." unique_id=1273644192]
+texture_filter = 1
+position = Vector2(240, 135)
+texture = ExtResource("5_os3e0")

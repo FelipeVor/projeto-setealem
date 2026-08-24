@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 var dist := 0
 
+var detect := false
+var come := false
 var discovered := false
 
 var die := false
@@ -19,38 +21,36 @@ func sac_man():
 	pass
 
 func status_change(delta):
-	timer_status -= delta
-	
-	if timer_status > 0:
-		status = "walk-"
+	if detect:
 		timer_status -= delta
-	elif status != "attack-": status = "run-"
+		
+		if timer_status > 0:
+			status = "walk-"
+			timer_status -= delta
+		elif status != "attack-": status = "run-"
 		
 
 func _ready():
 	randomize()
-	timer_status = randf_range(10.0, 15.0)
+	timer_status = randf_range(2.0, 5.0)
 	
 
 
 func _physics_process(delta: float) -> void:
-	#was_discovered()
+	
 	status_change(delta)
 	if die:
 		if self.modulate.a > 0:
 			self.modulate.a -= 0.02
 		else:
-			player.enemy_num -= 1
+			player.lantern = false
+			player.cutscene = false
 			queue_free()
-	if status == "attack-" and $AnimatedSprite2D.frame == 30:
-		if die_screen != null:
-			die_screen.die = true
-			get_tree().paused = true
 
 	if status != "run-":
 		dist = int(player.global_position.distance_to(global_position))
 		dist = clamp(dist, 2, 1000)
-		if dist < 180:
+		if dist < 180 or not detect:
 			dist = 0
 	else:
 		if die:
@@ -85,21 +85,26 @@ func _physics_process(delta: float) -> void:
 		anim = "upLeft"
 		
 	print(status)
-	$AnimatedSprite2D.play(status + anim)
-	
-
-#func was_discovered():
-	#if discovered:
-		#audio_play = false
-		#self.visible = true
-		#$detect_player.scale = Vector2(0.5,0.5)
-
+	if not come:
+		if status == "attack-" and $AnimatedSprite2D.frame >= 25:
+			come = true
+			$AnimatedSprite2D.stop()
+			$AnimatedSprite2D.frame = 25
+			player.cutscene = true
+			if not player.lantern:
+				if die_screen != null:
+					die_screen.die = true
+					get_tree().paused = true
+			else:
+				die = true
+		else:
+			$AnimatedSprite2D.play(status + anim)
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	var speed := 300
 	if status != "run-":
 		speed = lerp(0.0, 500.0, float(dist) / 1000.0)
-	if die:
+	if die or not detect:
 		speed = 0
 
 	velocity = velocity.move_toward(
@@ -109,6 +114,6 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 
 	move_and_slide()
 
-#func _on_detect_player_body_exited(body: Node2D) -> void:
-	#if body.has_method("player"):
-		#die = true
+func _on_detect_player_body_entered(body: Node2D) -> void:
+	if body.has_method("player"):
+		detect = true

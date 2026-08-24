@@ -66,6 +66,7 @@ func _ready() -> void:
 	$Player.cutscene = true
 	$Player/Camera2D.set_as_top_level(true)
 	$Player/Camera2D.global_position = Vector2(240, 135)
+	$Player/Camera2D.limit_enabled = false
 	$SimpleDialogue/CanvasLayer/ColorRect.color.a = 1
 
 
